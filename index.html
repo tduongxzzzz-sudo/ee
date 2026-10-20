@@ -32,7 +32,7 @@ button.big{font-size:clamp(48px,16vw,96px);padding:.25em 1.2em;animation:pulse 1
 .card h2{margin-bottom:14px}
 .letter{font-size:clamp(16px,4.4vw,19px);line-height:1.7;text-align:left;white-space:pre-line;min-height:150px}
 .env{font-size:96px;cursor:pointer;animation:pulse 1.2s infinite;background:none;box-shadow:none;padding:0}
-.counter{font-size:clamp(34px,10vw,52px);font-weight:800;color:var(--accent);margin:4px 0}
+.counter{font-size:clamp(26px,7.5vw,44px);font-weight:800;color:var(--accent);margin:4px 0}
 .sign{color:var(--muted);font-weight:600}
 .hide{display:none}
 #modal{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;z-index:9;padding:24px}
@@ -87,7 +87,7 @@ button.big{font-size:clamp(48px,16vw,96px);padding:.25em 1.2em;animation:pulse 1
   </div>
   <div class="card hide" id="countCard">
     <div class="sign">Mình đã yêu nhau được</div>
-    <div class="counter"><span id="days">0</span> ngày 💞</div>
+    <div class="counter"><span id="days">0</span> 💞</div>
     <div class="sign">và anh còn muốn yêu em thêm nhiều ngày nữa</div>
   </div>
   <div class="btns hide" id="actions">
@@ -105,8 +105,8 @@ button.big{font-size:clamp(48px,16vw,96px);padding:.25em 1.2em;animation:pulse 1
 
 <script>
 const $=id=>document.getElementById(id);
-const START=new Date('2025-01-01'); // ĐỔI thành ngày hai đứa yêu nhau (năm-tháng-ngày)
-const LETTER="Gửi em bé của anh\n\nChúc em yêu của anh ngày 20/10 thật vui vẻ nha, chúc em luôn xinh đẹp, rạng rỡ và cười thật nhiều mỗi ngày nha em yeuu\n\nCảm ơn em vì đã xuất hiện, làm cuộc sống của anh trở lên ý nghĩa hơn\n\nMong em luôn khỏe mạnh, hạnh phúc, được yêu thương và thành công nha em bé:3, nhất là từ anh nha 🥰\n\nAnh yêu em nhiều lắm,chúng mình mãi bên nhau nha Bé Yêu! 💕\n\n— Người yêu em Phương nhứt❤️ —";
+const START=new Date('2025-05-25'); // ĐỔI thành ngày hai đứa yêu nhau (năm-tháng-ngày)
+const LETTER="Gửi đồ đáng iuu\n\nChúc em yêu của anh 20/10 thật vui vẻ nha,chúc em luôn xinh đẹp, rạng rỡ và cười thật nhiều mỗi ngày nha e bé🙈\n\nCảm ơn em vì đã xuất hiện, làm cuộc sống của anh ngọt ngào và ý nghĩa hơn rất nhiều ❤️\n\nMong em luôn khỏe mạnh, hạnh phúc, được yêu thương và luôn thành công trên con đường mình lựa chọn nha,và lúc nào cũng iu anh nha bé:3\n\nAnh yêu em nhiều lắm,chúng mình mãi bên nhau nha Bé Yêu! 💕\n\n— Thanh Hải yêu Trúc Phương nhứt —";
 const VOUCHERS=[["🍜 Một buổi đi ăn","Em chọn quán, anh trả tiền, anh chở đi!"],["🤗 Một cái ôm thật chặt","Dùng bất cứ lúc nào em buồn hay mệt."],["🧋 Một ly trà sữa","Full topping, không bàn cãi."],["👑 Một ngày làm công chúa","Anh nghe lời em cả ngày."],["💆 Một buổi massage","Tay anh hơi vụng nhưng rất có tâm."],["🎬 Một buổi xem phim","Em chọn phim, anh mua bắp."],["💋 Một cái hôn","Hạn sử dụng: vô thời hạn."]];
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
 const bgm=$('bgm');let muted=false;
@@ -142,7 +142,7 @@ $('env').onclick=()=>{
   burst();
 };
 function end(){
-  $('days').textContent=Math.max(0,Math.floor((Date.now()-START)/864e5));
+  const now=new Date();let y=now.getFullYear()-START.getFullYear();let an=new Date(START);an.setFullYear(START.getFullYear()+y);if(an>now){y--;an=new Date(START);an.setFullYear(START.getFullYear()+y)}const d=Math.max(0,Math.floor((now-an)/864e5));$('days').textContent=(y>0?y+' năm ':'')+d+' ngày';
   $('countCard').classList.remove('hide');$('actions').classList.remove('hide');burst();
   $('s4').scrollTo({top:$('s4').scrollHeight,behavior:'smooth'});
 }
